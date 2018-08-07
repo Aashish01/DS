@@ -1,0 +1,34 @@
+package timeLimitExceeded;
+import java.io.*;
+import java.math.*;
+public class LargeExponents {
+	public static BigInteger largeExponent(BigInteger A, long n) {
+		if(n==0) {
+			return BigInteger.valueOf(1);
+		}
+		if((n&1)==0) {
+			return largeExponent(A.multiply(A), n/2);
+		}
+		return A.multiply(largeExponent(A.multiply(A), n/2));
+	}
+	public static BigInteger add(BigInteger A, BigInteger B) {
+		return A.add(B);
+	}
+public static void main(String[] args) throws IOException{
+	BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
+	int t= Integer.parseInt(scan.readLine());
+	for(int l=0;l<t;l++) {
+		String[] arr= scan.readLine().split(" ");
+		long a= Long.parseLong(arr[0]);
+		long b= Long.parseLong(arr[1]);
+		long n= Long.parseLong(arr[2]);
+		BigInteger A= BigInteger.valueOf(a);
+		BigInteger power1= largeExponent(A,n);
+		BigInteger B = BigInteger.valueOf(b);
+		BigInteger power2= largeExponent(B, n);
+		BigInteger sum= add(power1, power2);
+		System.out.println(sum);	
+	}
+	scan.close();
+}
+}
