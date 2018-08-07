@@ -49,12 +49,9 @@ public static void main(String[] args) throws IOException{
 		int m=(int)Math.pow(10, 9)+7;
 //		BigInteger ans= gcd(Num1, Num2).mod(BigInteger.valueOf(m));
 //		System.out.println(ans);
-		if(c<0) {
-			c=c*(-1);
-		}
 		int sq= (int)Math.pow(c, 0.5);
 		int ans=1;
-		for(int i=1;i<=sq;i++) {
+		for(int i=1;i<=sq+1;i++) {
 			if(Num1.mod(BigInteger.valueOf(i)).equals(BigInteger.valueOf(0))) {
 				ans =i%m;
 			}
